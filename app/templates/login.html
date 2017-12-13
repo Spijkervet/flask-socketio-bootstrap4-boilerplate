@@ -15,12 +15,12 @@
                 {{ form.hidden_tag() }}
 
                 <div class="form-group row">
-                    {{ form.username.label(class="sr-only") }}
-                    {{ form.username() }} {% for error in form.username.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
+                    {{ form.email.label(class="sr-only") }}
+                    {{ form.email(class="form-control") }} {% for error in form.email.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
                 </div>
                 <div class="form-group row">
                     {{ form.password.label(class="sr-only") }}
-                    {{ form.password() }} {% for error in form.password.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
+                    {{ form.password(class="form-control") }} {% for error in form.password.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
                 </div>
                 <div class="form-group row">
                     <label class="form-check-label">
@@ -28,8 +28,7 @@
                         {{ form.remember.label }}
                     </label>
                 </div>
-                {{ form.submit() }}
-
+                {{ form.submit(class="btn btn-md btn-primary btn-block") }}
             </form>
         </div>
     </div>

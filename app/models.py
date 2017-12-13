@@ -2,7 +2,6 @@ from flask_login import UserMixin
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
 from app import db, bcrypt
 
 engine = create_engine('sqlite:///database.db', echo=True)
@@ -10,25 +9,38 @@ db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind
 Base = declarative_base()
 Base.query = db_session.query_property()
 
+class User(Base):
+    __tablename__ = "users"
 
-class User(UserMixin, Base):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(64), unique=True, index=True)
+    id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
-    password_hash = db.Column(db.String(128))
+    password = db.Column(db.String(128))
+    authenticated = db.Column(db.Boolean, default=False)
 
-    def __init__(self, username=None, password=None):
-        if username and password:
-            self.username = username
-            self.password = bcrypt.generate_password_hash(password)
+    def __init__(self, email=None, password=None):
+        self.email = email
+        self.password = bcrypt.generate_password_hash(password)
 
 
     def check_password(self, password):
-        bcrypt.check_password_hash(pw_hash, password)
+        return bcrypt.check_password_hash(self.password, password)
+
 
     def logout(self):
-        print("Logged out")
+        self.authenticated = False
+        db.session.commit()
 
-# Create tables.
+
+    def is_active(self):
+        return True
+
+    def get_id(self):
+        return self.id
+
+    def is_authenticated(self):
+        return self.authenticated
+
+    def is_anonymous(self):
+        return False
+
 Base.metadata.create_all(bind=engine)

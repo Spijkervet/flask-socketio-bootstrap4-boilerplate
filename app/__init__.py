@@ -8,7 +8,7 @@ from flask_socketio import SocketIO
 from .info import Info
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-from flask.ext.bcrypt import Bcrypt
+from flask_bcrypt import Bcrypt
 
 
 __version__ = '1.0.0'
@@ -19,14 +19,11 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 bcrypt = Bcrypt()
 
-
-def create_app(host, debug):
+def create_app(DB_PATH):
     from . import events
 
     app = Flask(__name__)
-
-    app.host = host
-    app.debug = debug
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///" + DB_PATH
     app.config['SECRET_KEY'] = 'Aqewur381!%*'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

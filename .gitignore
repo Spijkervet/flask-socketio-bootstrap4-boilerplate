@@ -49,11 +49,16 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff:
-*.log
-
 # Sphinx documentation
 docs/_build/
 
 # PyBuilder
 target/
+
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+*.db
