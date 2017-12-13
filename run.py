@@ -7,7 +7,7 @@ DB_PATH = os.path.join(BASE_DIR, "database.db")
 
 app = create_app(DB_PATH)
 app.host = '127.0.0.1'
-app.debug = False
+app.debug = True
 
 
 if __name__ == '__main__':
