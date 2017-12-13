@@ -7,7 +7,7 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     {% block head %}
-    <title>Boilerplate - {% block title %}{% endblock %}</title>
+    <title>{{ app_info.name }} - {% block title %}{% endblock %}</title>
     {% endblock %}
 
     <!-- Bootstrap 4 -->

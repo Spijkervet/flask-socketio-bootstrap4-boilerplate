@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+{% block head %}
+<!-- HEAD css / scripts -->
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid signin-container">
+
+    <div class="row">
+        <div class="col">
+            <form class="form-signin" method="POST">
+                <h2 class="form-signin-heading text-center">{{ app_info.name }}</h2>
+
+                {{ form.hidden_tag() }}
+
+                <div class="form-group row">
+                    {{ form.username.label(class="sr-only") }}
+                    {{ form.username() }} {% for error in form.username.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
+                </div>
+                <div class="form-group row">
+                    {{ form.password.label(class="sr-only") }}
+                    {{ form.password() }} {% for error in form.password.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
+                </div>
+                <div class="form-group row">
+                    <label class="form-check-label">
+                        {{ form.remember() }}
+                        {{ form.remember.label }}
+                    </label>
+                </div>
+                {{ form.submit() }}
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

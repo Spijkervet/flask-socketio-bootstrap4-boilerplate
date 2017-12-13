@@ -7,18 +7,18 @@
 
 
 <div class="container">
-
-    <div style="padding-top:10%; text-align:center;">
-        <h1>Hello world!</h1>
-        <p class="lead">
-            <a href="getbootstrap.com">Bootstrap 4 Boilerplate</a>
-        </p>
-
-        <div>
-            <p>
-                <div id="time"></div>
-                <div id="version"></div>
-            </p>
+    <div style="padding-top:10%">
+        <div class="jumbotron">
+            <h1 class="display-3">Hello, world!</h1>
+            <p class="lead"><a href="getbootstrap.com">Bootstrap 4 Boilerplate</a></p>
+            <hr class="my-4">
+            <div>
+                Project: {{ app_info.name }}
+                <p>
+                    <div id="time"></div>
+                    <div id="version"></div>
+                </p>
+            </div>
         </div>
 
     </div>
